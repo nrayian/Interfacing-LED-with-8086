@@ -1,0 +1,33 @@
+DATA SEGMENT
+    PORTB EQU 82H
+    CWR EQU 86H
+DATA ENDS
+
+
+CODE SEGMENT
+    MOV AX, DATA
+    MOV DS, AX
+    
+ORG 0000H
+    
+START:
+    MOV DX, CWR
+    MOV AL, 0BCH
+    OUT DX, AL
+
+JMP TO
+TO:
+    MOV AL, 0H
+    MOV DX, PORTB
+    OUT DX, AL
+    MOV CX, 0DF36H
+loop1:loop loop1
+    MOV AL, 0FFH
+    MOV DX, PORTB
+    OUT DX, AL
+    MOV CX, 0DF36H
+loop2:loop loop2
+JMP TO
+
+CODE ENDS
+END
